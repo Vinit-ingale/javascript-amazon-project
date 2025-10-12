@@ -67,6 +67,7 @@ document.querySelector('.js-product-grid').innerHTML=productHTML;
         document.querySelector('.js-cart-quantity').innerHTML=cartQuntity;
       console.log(cart)
     }
+    updateCartQuantity();
 
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
     button.addEventListener('click',()=>{
@@ -77,6 +78,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
        
        addtocart(productId,quantity)
        updateCartQuantity()
+       
 
     let addedMassage=document.querySelector(`.js-added-to-cart-${productId}`)
            addedMassage.classList.add('added')
