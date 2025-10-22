@@ -5,6 +5,7 @@ import { saveToStorage } from "../../data/cart.js";
 import { updateQuantity } from "../../data/cart.js";
 import daysjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"; // default export
 import { deliveryOptions, getDeliveryOption} from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 
 export function renderOrderSummary(){
@@ -126,6 +127,7 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
         container.remove();
         updateCartQuantity();
         saveToStorage();
+        renderPaymentSummary();
         
     }) 
 })
@@ -167,6 +169,7 @@ document.querySelectorAll('.js-save-quantity-link').forEach((link)=>{
             document.querySelector(`.js-quantity-label[data-product-id="${productId}"]`).innerHTML=`${newQuantity}`;
            updateCartQuantity();
            saveToStorage();
+           renderPaymentSummary();
     })
 })
 
@@ -196,6 +199,7 @@ document.querySelectorAll('.js-delivery-option')
         const {productId,deliveryOptionId}=element.dataset
      updateDeliveryOption(productId,deliveryOptionId)
      renderOrderSummary();
+     renderPaymentSummary();
     })
   })
 }
