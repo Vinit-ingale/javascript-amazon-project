@@ -4,8 +4,9 @@ import {formatCurancy} from '../utils/money.js'
 import { saveToStorage } from "../../data/cart.js";
 import { updateQuantity } from "../../data/cart.js";
 import daysjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"; // default export
-import { deliveryOptions, getDeliveryOption} from "../../data/deliveryOptions.js";
+import { deliveryOptions, getDeliveryOption, calculateDeliveryDate} from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+
 
 
 export function renderOrderSummary(){
@@ -25,12 +26,7 @@ cart.forEach((cartItem)=>{
 
  
    
-const today=daysjs();
-    const deliveryDate=today.add(
-    deliveryOption.deliveryDays,'days'
-    );
-
-const dateString=deliveryDate.format('dddd, MMMM D')
+const dateString=calculateDeliveryDate(deliveryOption)
 
   
 
@@ -83,10 +79,7 @@ function deliveryOptionHTML(matchingProduct,cartItem){
     let html='';
 
     deliveryOptions.forEach((deliveryOption)=>{
-    const today=daysjs();
-    // use the deliveryDays from the current deliveryOption and pass number then unit
-    const deliveryDate=today.add(deliveryOption.deliveryDays, 'day');
-       const dateString=deliveryDate.format('dddd, MMMM D')
+   const dateString= calculateDeliveryDate(deliveryOption)   
 
        const priceString=deliveryOption.priceCents===0?'FREE ':`$${formatCurancy(deliveryOption.priceCents) } -` ;
        
@@ -123,11 +116,11 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
      const productId=link.dataset.productId;
         removeFromCart(productId)
         
-      const container=  document.querySelector(`.js-cart-item-container-${productId}`);
-        container.remove();
+        renderOrderSummary()
         updateCartQuantity();
         saveToStorage();
         renderPaymentSummary();
+        
         
     }) 
 })
