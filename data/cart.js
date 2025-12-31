@@ -29,11 +29,11 @@ export function addtocart(productId,quantity){
       })
 
       if(matchingItem){
-        matchingItem.quantity+=quantity;
+        matchingItem.quantity+=1;
       }else{
         cart.push({
         productId:productId,
-        quantity:quantity,
+        quantity:1,
         deliveryOptionId:'1'
       });
       }
