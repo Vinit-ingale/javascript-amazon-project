@@ -1,4 +1,4 @@
-import { formatCurancy } from "../scripts/utils/money.js"; 
+import { formatCurancy } from "../../scripts/utils/money.js"; 
 
 describe('test suite: formatCurrancy',()=>{
     it('coverts cents into dollars',()=>{
