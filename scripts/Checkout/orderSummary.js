@@ -28,12 +28,9 @@ cart.forEach((cartItem)=>{
    
 const dateString=calculateDeliveryDate(deliveryOption)
 
-  
-
-
 
 cartSummaryHTML+=`
-<div class="cart-item-container js-cart-item-container-${matchingProduct.id}" >
+<div class="cart-item-container js-cart-item-container  js-cart-item-container-${matchingProduct.id}" >
     <div class="delivery-date">
         Delivery date: ${dateString}
     </div>
@@ -49,7 +46,7 @@ cartSummaryHTML+=`
         <div class="product-price">
             ${formatCurancy(matchingProduct.priceCents)}
         </div>
-        <div class="product-quantity">
+        <div class="product-quantity js-product-quantity-${matchingProduct.id}">
             <span>
             Quantity: <span class="quantity-label js-quantity-label" data-product-id="${matchingProduct.id}" >${cartItem.quantity}</span>
             </span>
@@ -58,7 +55,7 @@ cartSummaryHTML+=`
             </span>
             <input class="quantity-input js-quantity-input-${matchingProduct.id}">
             <span class="save-quantity-link link-primary js-save-quantity-link" data-product-id="${matchingProduct.id}">save</span>
-            <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
+            <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchingProduct.id}" data-product-id="${matchingProduct.id}">
             Delete
             </span>
         </div>
@@ -119,7 +116,7 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
         renderOrderSummary()
         updateCartQuantity();
         saveToStorage();
-        renderPaymentSummary();
+       // renderPaymentSummary();
         
         
     }) 
@@ -143,10 +140,13 @@ cart.forEach((cartItem)=>{
     cartQuntity+=cartItem.quantity;
     
 }); let checkoutItems=document.querySelector('.js-checkout-length');
-    checkoutItems.innerHTML=`${cartQuntity} items`
+    if (checkoutItems) {
+        checkoutItems.innerHTML = `${cartQuntity} items`;
+    }
 
 }
 updateCartQuantity();
+
 
 document.querySelectorAll('.js-save-quantity-link').forEach((link)=>{
     link.addEventListener('click',()=>{
@@ -196,5 +196,5 @@ document.querySelectorAll('.js-delivery-option')
     })
   })
 }
-renderOrderSummary();
+
     
