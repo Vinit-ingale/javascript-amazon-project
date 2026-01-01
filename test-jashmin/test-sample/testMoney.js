@@ -1,4 +1,4 @@
-import { formatCurancy } from "../scripts/utils/money.js";     
+import { formatCurancy } from "../../scripts/utils/money.js";     
 
 console.log('Running tests for formatCurancy function');
 console.log('nearset cents rounding test cases');
