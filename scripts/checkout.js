@@ -4,7 +4,12 @@ import { renderPaymentSummary } from './Checkout/paymentSummary.js';
 //import '../data/cart-class.js'
 import '../data/car.js'
 import '../data/Backend-practice.js'
+import { loadProduct } from '../data/products.js';
 
-renderOrderSummary();
-renderPaymentSummary();
-renderCheckoutHeader();
+loadProduct(()=>{
+    renderOrderSummary();
+    renderPaymentSummary();
+    renderCheckoutHeader();
+
+});
+
