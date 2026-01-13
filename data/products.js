@@ -76,6 +76,31 @@ function logThis(){
 logThis();
 logThis.call('hello');
 */
+
+class Appliances extends Product {
+      instructionLink;
+      warrantyLink;
+
+      constructor(productDetails){
+         super(productDetails)
+         this.instructionLink=productDetails.instructionLink;
+         this.warrantyLink=productDetails.warrantyLink; 
+      }
+
+      extraInfoHTML(){
+  return `
+  <a href="${this.instructionLink}" target="_blank"> instruction </a>
+   <a href="${this.warrantyLink}" target="_blank"> warranty</a>
+
+  `;
+
+ }
+
+
+}
+
+
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -127,11 +152,14 @@ export const products = [
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
     image: "images/products/black-2-slot-toaster.jpg",
     name: "2 Slot Toaster - Black",
+     type: "appliances",
     rating: {
       stars: 5,
       count: 2197
     },
     priceCents: 1899,
+    instructionLink:"images/appliance-instructions.png",
+     warrantyLink:"images/appliance-warranty.png",
     keywords: [
       "toaster",
       "kitchen",
@@ -317,6 +345,9 @@ export const products = [
       count: 846
     },
     priceCents: 3074,
+    type:"appliances",
+     instructionLink:"images/appliance-instructions.png",
+     warrantyLink:"images/appliance-warranty.png",
     keywords: [
       "water boiler",
       "appliances",
@@ -622,6 +653,9 @@ export const products = [
       count: 1211
     },
     priceCents: 2250,
+    type:"appliances",
+     instructionLink:"images/appliance-instructions.png",
+     warrantyLink:"images/appliance-warranty.png",
     keywords: [
       "coffeemakers",
       "kitchen",
@@ -682,6 +716,9 @@ export const products = [
       count: 3
     },
     priceCents: 10747,
+    type:"appliances",
+     instructionLink:"images/appliance-instructions.png",
+     warrantyLink:"images/appliance-warranty.png",
     keywords: [
       "food blenders",
       "kitchen",
@@ -754,6 +791,8 @@ export const products = [
   if (productDetails.type === "clothing") {
     return new Clothing(productDetails);
 
+  }if (productDetails.type=="appliances"){
+    return new Appliances(productDetails);
   }
   return new Product(productDetails)
 })
