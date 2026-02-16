@@ -2,6 +2,8 @@ import { cart,addtocart } from '../data/cart.js';
 import { products,loadProduct } from '../data/products.js';
 import { formatCurancy } from './utils/money.js';
 
+
+
 loadProduct(renderProductGrid);
 
 function renderProductGrid(){

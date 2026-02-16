@@ -6,6 +6,7 @@ export function  addOrder(order){
 }
 
 function saveToStorage(){
-    localStorage.setItem('order',JSON.stringify(orders));
+    localStorage.setItem('orders',JSON.stringify(orders));
+    
 
 }   

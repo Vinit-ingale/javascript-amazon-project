@@ -19,7 +19,7 @@ export function saveToStorage(){
   localStorage.setItem('cart',JSON.stringify(cart));
 }
 
-export function addtocart(productId,quantity){
+export function addtocart(productId, quantity = 1){
   let matchingItem;
 
       cart.forEach((cartItem)=>{
@@ -29,13 +29,13 @@ export function addtocart(productId,quantity){
       })
 
       if(matchingItem){
-        matchingItem.quantity+=1;
-      }else{
+        matchingItem.quantity += Number(quantity);
+      } else {
         cart.push({
-        productId:productId,
-        quantity:1,
-        deliveryOptionId:'1'
-      });
+          productId: productId,
+          quantity: Number(quantity),
+          deliveryOptionId: '1'
+        });
       }
       saveToStorage();
     }   
