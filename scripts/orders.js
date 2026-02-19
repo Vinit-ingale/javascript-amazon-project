@@ -4,6 +4,13 @@ import daysjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { getProduct, products ,loadProductFetch} from "../data/products.js";
 import { cart,addtocart} from "../data/cart.js";
 
+ let cartQuantity=0;
+    cart.forEach((cartItem)=>{
+        cartQuantity+=cartItem.quantity;
+
+    });
+
+
 async function renderOrders(){
    await loadProductFetch();
 
@@ -64,7 +71,7 @@ async function renderOrders(){
                 ${product.name}
               </div>
               <div class="product-delivery-date">
-                Arriving on: ${daysjs(productDetails.estimatedDeliveryDate).format('MMMM D')}
+                Arriving on: ${daysjs(productDetails.estimatedDeliveryTime).format('MMMM D')}
               </div>
               <div class="product-quantity">
                 Quantity: ${productDetails.quantity}
@@ -83,7 +90,6 @@ async function renderOrders(){
               </a>
             </div>
 
-            
       `;
      
     });
@@ -94,6 +100,7 @@ async function renderOrders(){
   }
 
   document.querySelector('.js-orders-grid').innerHTML=ordersHTML;
+  document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
 
   document.querySelectorAll('.js-buy-again').forEach((button)=>{
     button.addEventListener('click',()=>{
@@ -112,6 +119,7 @@ async function renderOrders(){
 }
 renderOrders()
 console.log(orders)
+
 
 
 
