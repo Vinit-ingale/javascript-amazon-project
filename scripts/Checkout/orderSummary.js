@@ -3,7 +3,7 @@ import { products, getProduct } from "../../data/products.js";
 import {formatCurancy} from '../utils/money.js'
 import { saveToStorage } from "../../data/cart.js";
 import { updateQuantity } from "../../data/cart.js";
-import daysjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"; // default export
+
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate} from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 
